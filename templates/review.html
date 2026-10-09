@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block title %}Review Mode{% endblock %}
+{% block main %}
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
+  <div><span class="review-kicker text-primary">ACTIVE RECALL QUEUE</span><h1 class="fw-bold mb-1">Review today</h1><p class="text-secondary mb-0">Revisit a solution before the details fade.</p></div>
+  <a class="btn btn-outline-secondary mt-3 mt-md-0" href="{{ url_for('problems') }}">Browse all problems</a>
+</div>
+
+{% if problems %}
+  <div class="alert alert-info border-0">{{ problems|length }} problem{{ '' if problems|length == 1 else 's' }} due as of {{ today }}. Try to recall the approach before revealing your notes.</div>
+  <div class="row g-4">
+  {% for problem in problems %}
+    <div class="col-lg-6">
+      <article class="card border-0 shadow-sm h-100 review-problem-card">
+        <div class="card-body p-4">
+          <div class="d-flex justify-content-between align-items-start gap-3 mb-3"><div><span class="badge difficulty-{{ problem.difficulty|lower }}">{{ problem.difficulty }}</span><span class="small text-secondary ms-2">{{ problem.topic }}</span></div><span class="small text-secondary">Due {{ problem.next_review }}</span></div>
+          <h2 class="h4 fw-bold">{{ problem.name }}</h2><p class="text-secondary mb-3">{{ problem.platform }} &middot; Solved {{ problem.date_solved }}</p>
+          <details class="review-notes mb-4"><summary>Reveal my saved approach</summary><div class="mt-3">{% if problem.notes %}<p class="notes mb-0">{{ problem.notes }}</p>{% else %}<p class="text-secondary fst-italic mb-0">No personal notes were saved for this problem.</p>{% endif %}</div></details>
+          <div class="d-flex flex-wrap gap-2"><a class="btn btn-outline-secondary btn-sm" href="{{ problem.url }}" target="_blank" rel="noopener noreferrer">Open problem ↗</a><a class="btn btn-outline-primary btn-sm" href="{{ url_for('details', problem_id=problem.id) }}">View details</a><form action="{{ url_for('complete_review', problem_id=problem.id) }}" method="post"><button class="btn btn-primary btn-sm" type="submit">I recalled it ✓</button></form></div>
+        </div>
+      </article>
+    </div>
+  {% endfor %}
+  </div>
+{% else %}
+  <section class="card border-0 shadow-sm text-center p-5 empty-review"><span class="empty-check">✓</span><h2 class="h4 fw-bold mt-3">Nothing due right now</h2><p class="text-secondary mb-4">You are caught up. Add a new problem or come back when a scheduled review is due.</p><div><a class="btn btn-primary" href="{{ url_for('add') }}">Add a problem</a></div></section>
+{% endif %}
+{% endblock %}

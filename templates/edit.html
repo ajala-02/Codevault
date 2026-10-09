@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block title %}Edit Problem{% endblock %}
+{% block main %}
+<div class="page-heading"><h1 class="fw-bold">Edit problem</h1><p class="text-secondary">Update your solution record.</p></div>
+<form class="card border-0 shadow-sm p-4 p-md-5" action="{{ url_for('edit', problem_id=problem.id) }}" method="post">
+  {% include "_problem_form.html" %}
+  <div class="d-flex gap-2 mt-4"><button class="btn btn-primary" type="submit">Save changes</button><a class="btn btn-outline-secondary" href="{{ url_for('details', problem_id=problem.id) }}">Cancel</a></div>
+</form>
+{% endblock %}

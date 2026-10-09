@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block title %}Add Problem{% endblock %}
+{% block main %}
+<div class="page-heading"><h1 class="fw-bold">Add a problem</h1><p class="text-secondary">Save a problem you have solved so you can revisit it later.</p></div>
+<form class="card border-0 shadow-sm p-4 p-md-5" action="{{ url_for('add') }}" method="post">
+  {% include "_problem_form.html" %}
+  <div class="d-flex gap-2 mt-4"><button class="btn btn-primary" type="submit">Save problem</button><a class="btn btn-outline-secondary" href="{{ url_for('problems') }}">Cancel</a></div>
+</form>
+{% endblock %}

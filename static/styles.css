@@ -1,0 +1,51 @@
+/* Some styling choices were generated with AI assistance and reviewed by the author. */
+:root { --ink: #101828; --muted: #667085; --paper: #f6f8fc; --line: #e4e7ec; --vault: #172554; --electric: #4f46e5; --aqua: #16bdca; }
+body { background: var(--paper); color: var(--ink); min-height: 100vh; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+body::before { background-image: linear-gradient(rgba(79,70,229,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(79,70,229,.045) 1px, transparent 1px); background-size: 30px 30px; content: ""; inset: 0; pointer-events: none; position: fixed; z-index: -1; }
+.navbar { background: rgba(16,24,40,.97); border-bottom: 1px solid rgba(22,189,202,.25); box-shadow: 0 8px 28px rgba(16,24,40,.17); }
+.navbar-brand { align-items: center; display: flex; gap: .7rem; letter-spacing: -.6px; line-height: 1; }
+.navbar-brand > span:last-child { display: grid; gap: .17rem; }
+.navbar-brand small { color: #8eeaf1; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .54rem; font-weight: 700; letter-spacing: .16em; }
+.brand-mark { align-items: center; background: linear-gradient(135deg, var(--aqua), #6375ff); border-radius: .55rem; color: #fff; display: inline-flex; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .92rem; height: 2.1rem; justify-content: center; letter-spacing: -.18em; width: 2.2rem; }
+.navbar .nav-link { color: #cbd5e1; font-size: .9rem; font-weight: 600; }
+.navbar .nav-link:hover { color: #8eeaf1; }
+.navbar .btn-light { background: #dffcff; border: 0; color: #0e5260; font-weight: 700; }
+.navbar .btn-light:hover { background: #fff; color: #101828; }
+.auth-card { border: 1px solid rgba(16,24,40,.07) !important; border-radius: 1.15rem; max-width: 450px; margin-top: 4vh; overflow: hidden; position: relative; }
+.auth-card::before { background: linear-gradient(90deg, var(--electric), var(--aqua)); content: ""; height: 5px; left: 0; position: absolute; right: 0; top: 0; }
+.page-heading { margin-bottom: 1.5rem; }
+.page-heading h1, h1.fw-bold { letter-spacing: -.045em; }
+.card { border-radius: 1rem; }
+.card-header { border-radius: 1rem 1rem 0 0 !important; }
+.stat-card { border-radius: 1rem; overflow: hidden; padding: 1.2rem; color: white; min-height: 118px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 .6rem 1.3rem rgba(15,23,42,.10); position: relative; transition: transform .2s ease, box-shadow .2s ease; }
+.stat-card::after { border: 1px solid rgba(255,255,255,.20); border-radius: 50%; content: ""; height: 95px; position: absolute; right: -23px; top: -36px; width: 95px; }
+.stat-card:hover { box-shadow: 0 .9rem 1.9rem rgba(15,23,42,.17); transform: translateY(-3px); }
+.stat-card span { font-size: .72rem; font-weight: 800; letter-spacing: .1em; opacity: .92; text-transform: uppercase; }
+.stat-card strong { font-size: 2.35rem; line-height: 1; }
+.total { background: linear-gradient(135deg, #243b85, #4f46e5); }.easy { background: linear-gradient(135deg, #057a55, #16a34a); }.medium { background: linear-gradient(135deg, #b54708, #f79009); }.hard { background: linear-gradient(135deg, #b42318, #ef476f); }.topics { background: linear-gradient(135deg, #0e7490, #16bdca); }
+.difficulty-easy { color: #05603a; background: #d1fadf; }.difficulty-medium { color: #93370d; background: #fef0c7; }.difficulty-hard { color: #b42318; background: #fee4e2; }
+.badge { border-radius: 99px; font-weight: 700; padding: .48em .7em; }
+.btn-primary { background: linear-gradient(135deg, var(--electric), #2563eb); border: 0; box-shadow: 0 5px 12px rgba(79,70,229,.22); font-weight: 700; }
+.btn-primary:hover, .btn-primary:focus { background: linear-gradient(135deg, #4338ca, #1d4ed8); box-shadow: 0 7px 16px rgba(79,70,229,.29); transform: translateY(-1px); }
+.btn { transition: transform .18s ease, box-shadow .18s ease; }
+.form-control, .form-select { border-color: #d0d5dd; border-radius: .65rem; padding: .68rem .78rem; }
+.form-control:focus, .form-select:focus { border-color: #6f7bf7; box-shadow: 0 0 0 .25rem rgba(79,70,229,.14); }
+th { background: #f9fafb !important; color: #667085 !important; font-size: .7rem; letter-spacing: .09em; text-transform: uppercase; white-space: nowrap; }
+tbody tr { transition: background .15s ease; }
+tbody tr:hover { background: #f3f5ff !important; }
+.notes { white-space: pre-wrap; line-height: 1.65; }
+.review-banner { align-items: center; background: linear-gradient(115deg, #172554, #29399b 58%, #0e7490); border-radius: 1rem; box-shadow: 0 .7rem 1.6rem rgba(30,58,138,.20); color: #fff; display: flex; gap: 1rem; justify-content: space-between; overflow: hidden; padding: 1.55rem 1.75rem; position: relative; }
+.review-banner::after { border: 1px solid rgba(255,255,255,.18); border-radius: 50%; content: ""; height: 190px; position: absolute; right: 7%; top: -78px; width: 190px; }
+.review-banner > * { position: relative; z-index: 1; }
+.review-banner p { color: #dbeafe; }
+.review-banner .btn { color: #25328a; font-weight: 800; white-space: nowrap; }
+.review-kicker { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .69rem; font-weight: 800; letter-spacing: .12em; }
+.review-meta { align-items: center; background: #f8fafc; border-left: 3px solid var(--aqua); color: #475467; display: flex; flex-wrap: wrap; font-size: .84rem; gap: .5rem 1.2rem; padding: .75rem .9rem; }
+.review-meta > span:first-child { color: #0e7490; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .68rem; font-weight: 800; letter-spacing: .08em; }
+.review-problem-card { border-top: 4px solid var(--aqua) !important; }
+.review-notes { border: 1px dashed #b9c1ff; border-radius: .7rem; padding: .72rem .9rem; }
+.review-notes summary { color: #3d4dc8; cursor: pointer; font-weight: 700; }
+.empty-check { align-items: center; background: #d1fadf; border-radius: 50%; color: #057a55; display: inline-flex; font-size: 1.75rem; font-weight: 800; height: 3.2rem; justify-content: center; width: 3.2rem; }
+footer { margin-top: auto; }
+.footer-prompt { color: var(--aqua); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-weight: 800; }
+@media (max-width: 575px) { .table { font-size: .86rem; } .btn-sm { padding: .25rem .4rem; } .brand-mark { height: 1.9rem; width: 2rem; } .review-banner { align-items: flex-start; flex-direction: column; padding: 1.35rem; } }

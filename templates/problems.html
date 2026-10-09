@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block title %}Problems{% endblock %}
+{% block main %}
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4"><div><h1 class="fw-bold mb-1">My problems</h1><p class="text-secondary mb-0">{{ problems|length }} problem{{ '' if problems|length == 1 else 's' }} in your vault.</p></div><a class="btn btn-primary mt-3 mt-md-0" href="{{ url_for('add') }}">+ Add a problem</a></div>
+{% if problems %}
+<div class="card border-0 shadow-sm">
+  <div class="card-body border-bottom"><div class="row g-2"><div class="col-md-5"><label class="visually-hidden" for="searchProblems">Search by problem name</label><input class="form-control" id="searchProblems" placeholder="Search problem name..."></div><div class="col-md-3"><select class="form-select" id="filterDifficulty"><option value="">All difficulties</option><option>Easy</option><option>Medium</option><option>Hard</option></select></div><div class="col-md-4"><select class="form-select" id="filterTopic"><option value="">All topics</option>{% for topic in topics %}<option value="{{ topic }}">{{ topic }}</option>{% endfor %}</select></div></div></div>
+  <div class="table-responsive"><table class="table table-hover align-middle mb-0"><thead><tr><th>Problem</th><th>Platform</th><th>Difficulty</th><th>Topic</th><th>Date solved</th><th class="text-end">Actions</th></tr></thead><tbody id="problemsTable">
+    {% for problem in problems %}<tr data-name="{{ problem.name|lower }}" data-difficulty="{{ problem.difficulty }}" data-topic="{{ problem.topic|lower }}"><td class="fw-semibold">{{ problem.name }}</td><td>{{ problem.platform }}</td><td><span class="badge difficulty-{{ problem.difficulty|lower }}">{{ problem.difficulty }}</span></td><td>{{ problem.topic }}</td><td>{{ problem.date_solved }}</td><td class="text-end text-nowrap"><a class="btn btn-sm btn-outline-primary" href="{{ url_for('details', problem_id=problem.id) }}">View</a><a class="btn btn-sm btn-outline-secondary" href="{{ url_for('edit', problem_id=problem.id) }}">Edit</a><form class="d-inline" action="{{ url_for('delete', problem_id=problem.id) }}" method="post" data-delete-form><button class="btn btn-sm btn-outline-danger" type="submit">Delete</button></form></td></tr>{% endfor %}
+  </tbody></table></div>
+  <p class="text-center text-secondary m-4 d-none" id="noMatches">No problems match those filters.</p>
+</div>
+{% else %}
+<div class="card border-0 shadow-sm text-center p-5"><p class="text-secondary mb-3">No problems saved yet.</p><div><a class="btn btn-primary" href="{{ url_for('add') }}">Add your first problem</a></div></div>
+{% endif %}
+{% endblock %}

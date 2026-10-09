@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block title %}{{ problem.name }}{% endblock %}
+{% block main %}
+<a class="text-decoration-none small" href="{{ url_for('problems') }}">&larr; Back to problems</a>
+<div class="card border-0 shadow-sm mt-3 overflow-hidden">
+  <div class="card-body p-4 p-md-5">
+    <div class="d-flex flex-column flex-md-row justify-content-between gap-3"><div><div class="d-flex gap-2 align-items-center mb-2"><span class="badge difficulty-{{ problem.difficulty|lower }}">{{ problem.difficulty }}</span><span class="text-secondary">{{ problem.topic }}</span></div><h1 class="fw-bold mb-1">{{ problem.name }}</h1><p class="text-secondary mb-0">{{ problem.platform }} &middot; Solved {{ problem.date_solved }}</p></div><div class="d-flex gap-2 align-items-start"><a class="btn btn-outline-secondary" href="{{ problem.url }}" target="_blank" rel="noopener noreferrer">Open problem ↗</a><a class="btn btn-primary" href="{{ url_for('edit', problem_id=problem.id) }}">Edit</a></div></div>
+    <hr class="my-4"><div class="review-meta mb-4"><span>REVIEW MODE</span><strong>{{ problem.review_count }} review{{ '' if problem.review_count == 1 else 's' }} completed</strong><span>Next review: {{ problem.next_review or 'Not scheduled' }}</span></div><h2 class="h5 fw-bold">My notes</h2>
+    {% if problem.notes %}<p class="notes mb-0">{{ problem.notes }}</p>{% else %}<p class="text-secondary fst-italic mb-0">No notes added for this problem.</p>{% endif %}
+  </div>
+  <div class="card-footer bg-white border-0 px-4 pb-4"><form action="{{ url_for('delete', problem_id=problem.id) }}" method="post" data-delete-form><button class="btn btn-sm btn-outline-danger" type="submit">Delete this problem</button></form></div>
+</div>
+{% endblock %}

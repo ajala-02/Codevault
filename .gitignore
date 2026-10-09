@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.env
+.venv/
+codevault.db
+.DS_Store

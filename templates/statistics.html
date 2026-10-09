@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block title %}Statistics{% endblock %}
+{% block main %}
+<div class="page-heading"><h1 class="fw-bold">Statistics</h1><p class="text-secondary">See where your problem-solving practice is focused.</p></div>
+<div class="row g-4">
+  <div class="col-lg-6"><section class="card border-0 shadow-sm h-100"><div class="card-body p-4"><h2 class="h5 fw-bold mb-4">Problems by difficulty</h2><canvas id="difficultyChart" aria-label="Problems by difficulty chart"></canvas></div></section></div>
+  <div class="col-lg-6"><section class="card border-0 shadow-sm h-100"><div class="card-body p-4"><h2 class="h5 fw-bold mb-3">Problems by topic</h2>{% if topics %}<div class="table-responsive"><table class="table mb-0"><thead><tr><th>Topic</th><th class="text-end">Solved</th></tr></thead><tbody>{% for topic in topics %}<tr><td>{{ topic.topic }}</td><td class="text-end fw-semibold">{{ topic.count }}</td></tr>{% endfor %}</tbody></table></div>{% else %}<p class="text-secondary mb-0">Add problems to see topic statistics.</p>{% endif %}</div></section></div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // Chart configuration was drafted with AI assistance and reviewed by the author.
+  new Chart(document.getElementById('difficultyChart'), {
+    type: 'doughnut',
+    data: { labels: ['Easy', 'Medium', 'Hard'], datasets: [{ data: [{{ difficulties.get('Easy', 0) }}, {{ difficulties.get('Medium', 0) }}, {{ difficulties.get('Hard', 0) }}], backgroundColor: ['#22c55e', '#f59e0b', '#ef4444'], borderWidth: 0 }] },
+    options: { plugins: { legend: { position: 'bottom' } }, cutout: '62%' }
+  });
+</script>
+{% endblock %}
