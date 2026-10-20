@@ -111,13 +111,6 @@ python3 -m unittest discover -s tests -v
 
 Covers spaced-repetition intervals, review completion, and user ownership protection.
 
----
-
-<div align="center">
-
-Built for the satisfying moment when a hard problem finally clicks. ✦
-
-</div>
 ## 👨‍💻 Author
 
 **Ajala Nalawade**
@@ -125,3 +118,11 @@ Built for the satisfying moment when a hard problem finally clicks. ✦
 - GitHub: [@ajala-02](https://github.com/ajala-02)
 - LinkedIn: [your-linkedin-url](https://www.linkedin.com/in/ajala-nalawade02/?isSelfProfile=true)
 - Email: ajala.nalawade@gmail.com
+
+---
+
+<div align="center">
+
+Built for the satisfying moment when a hard problem finally clicks. ✦
+
+</div>
