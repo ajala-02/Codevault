@@ -1,93 +1,149 @@
 <div align="center">
 
-# </> CodeVault
+# &lt;/&gt; CodeVault
 
 ### Your solved problems deserve a second brain.
 
-A private coding-problem tracker that uses **spaced repetition** and **active recall**, so you actually remember how you solved it.
+**A private coding-problem tracker with active-recall reviews, built for deliberate practice.**
 
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
-![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
-![Chart.js](https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white)
+Built as a CS50 Final Project using Python, Flask, SQLite, Bootstrap, JavaScript, and Chart.js.
 
 </div>
 
 ---
 
-## 💡 Why CodeVault?
+## About CodeVault
 
-Most of us solve a problem, feel great, and forget the approach two weeks later. A list of solved links doesn't fix that.
+CodeVault is a web-based coding-problem tracking application for students and developers practicing DSA and competitive programming.
 
-CodeVault saves your **own notes** and brings each problem back at the right time, so patterns stick instead of fading.
+Users can save problems from platforms such as LeetCode, HackerRank, and Codeforces, record their own solution notes, track progress by difficulty and topic, and revisit older problems using a spaced-repetition review queue.
 
-## 📸 Screenshots
+Unlike a normal list of solved links, CodeVault helps users remember **how** they solved a problem.
+
+## Screenshots
 
 ### Dashboard
-Your progress at a glance: totals, difficulty breakdown, topics covered, and what's due for review today.
+
+The dashboard shows total solved problems, difficulty breakdown, topics covered, recently solved problems, and the number of problems due for review.
 
 ![CodeVault Dashboard](assets/dashboard.png)
 
 ### Review Mode
-Recall the approach first. Reveal your notes only when you need them.
+
+Review Mode encourages active recall. Users first try to remember the solution, reveal their saved notes when needed, and then mark the problem as reviewed.
 
 ![CodeVault Review Mode](assets/review-mode.png)
 
 ### Statistics
-See where you're strong and where you're not, by difficulty and by topic.
+
+The statistics page displays a Chart.js difficulty chart and topic-wise problem totals.
 
 ![CodeVault Statistics](assets/statistics.png)
 
-## ✨ Features
+## Features
 
-- 🔐 **Private vaults:** secure sign-up and login, and every user's problems stay theirs
-- 📝 **Save problems** from LeetCode, HackerRank, Codeforces, or anywhere else, with your own notes
-- 🔎 **Search and filter** by name, difficulty, or topic
-- 📊 **Dashboard and stats** powered by Chart.js
-- 🧠 **Review Mode** with spaced repetition, the heart of the app
-- ✅ **Validated inputs** for URLs, dates, and required fields
+- Secure user registration, login, and logout
+- Unique usernames
+- Password hashing with Werkzeug
+- Session-based authentication
+- Private problem vault for every user
+- Add coding problems with a name, platform, URL, difficulty, topic, solved date, and personal notes
+- View, edit, and delete saved problems
+- Search problems by name
+- Filter problems by difficulty and topic
+- Dashboard with Easy, Medium, Hard, topic, and recent-activity totals
+- Statistics page with Chart.js visualizations
+- Review Mode with spaced repetition
+- User ownership checks on every problem route
+- Validation for URLs, dates, required fields, and difficulty values
 
-## 🧠 How Review Mode Works
+## Review Mode
 
-1. **Solve** a problem and save it with your notes.
-2. **Recall** the approach from memory when it comes due.
-3. **Reveal** your notes to check yourself.
-4. **Mark reviewed** and the next review moves further out.
+Review Mode is the main unique feature of CodeVault.
+
+When a user adds a solved problem, CodeVault schedules it for review. During a review session, the user tries to recall the approach before revealing saved notes.
+
+After the problem is marked as reviewed, the next review date is scheduled farther in the future:
 
 ```text
-1 day  →  3 days  →  7 days  →  14 days  →  30 days  →  60 days
+1 day → 3 days → 7 days → 14 days → 30 days → 60 days
 ```
 
-## 🛠️ Tech Stack
+This system is inspired by spaced repetition and active recall, helping users retain important DSA patterns over time.
 
-| Layer | Tools |
-|---|---|
-| Backend | Python, Flask |
-| Database | SQLite |
-| Frontend | HTML, Jinja, Bootstrap, CSS, JavaScript |
-| Charts | Chart.js |
-| Security | Werkzeug password hashing, session auth, parameterized SQL |
+## Tech Stack
 
-## 🔒 Under the Hood
+| Technology | Purpose |
+| --- | --- |
+| Python | Backend programming language |
+| Flask | Web framework, routing, and sessions |
+| SQLite | Local relational database |
+| HTML / Jinja | Dynamic page templates |
+| Bootstrap | Responsive layout and components |
+| CSS | Custom CodeVault design |
+| JavaScript | Search, filters, and delete confirmation |
+| Chart.js | Difficulty statistics chart |
+| Werkzeug | Password hashing |
 
-- Passwords are hashed, never stored in plaintext
-- Every query is scoped to the signed-in user, so no one can view, edit, review, or delete another user's problems
-- Parameterized SQL queries protect against SQL injection
-
-## 📁 Project Layout
+## Project Structure
 
 ```text
 Codevault/
-├── app.py          # Routes, validation, database setup
-├── helpers.py      # Login helper
-├── templates/      # Jinja pages
-├── static/         # CSS and JavaScript
-├── tests/          # Automated tests
-└── assets/         # README screenshots
+├── app.py                  # Flask routes, validation, database setup
+├── helpers.py              # login_required helper
+├── requirements.txt        # Python dependencies
+├── seed_demo.py            # Creates demo problem data
+├── reset_demo_database.py  # Rebuilds local demo database
+├── static/
+│   ├── styles.css          # Custom styling
+│   └── script.js           # Search, filtering, delete confirmation
+├── templates/              # Jinja HTML templates
+├── tests/
+│   └── test_app.py         # Automated tests
+└── assets/                 # README screenshots
 ```
 
-## 🚀 Run Locally
+## Database Design
+
+### `users`
+
+```text
+id
+username
+hash
+```
+
+### `problems`
+
+```text
+id
+user_id
+name
+platform
+url
+difficulty
+topic
+date_solved
+notes
+created_at
+review_count
+review_interval
+last_reviewed
+next_review
+```
+
+Each problem belongs to one user through `user_id`.
+
+## Security
+
+- Passwords are hashed; plaintext passwords are never stored.
+- Authenticated pages require a valid session.
+- Every problem query checks the signed-in user ID.
+- Users cannot view, edit, review, or delete another user’s problems.
+- Parameterized SQL queries help prevent SQL injection.
+- Problem URLs, dates, required fields, and difficulty values are validated.
+
+## Run Locally
 
 ```bash
 git clone https://github.com/ajala-02/Codevault.git
@@ -99,21 +155,52 @@ python3 -m pip install -r requirements.txt
 python3 -m flask --app app run
 ```
 
-Then open **http://127.0.0.1:5000**.
+Open this URL in your browser:
 
-Want sample data to explore? Run `python3 seed_demo.py` and log in with `demo_user` / `demo1234`.
+```text
+http://127.0.0.1:5000
+```
 
-## ✅ Tests
+## Demo Data
+
+Create a demo account with sample coding problems:
+
+```bash
+python3 seed_demo.py
+```
+
+Demo login:
+
+```text
+Username: demo_user
+Password: demo1234
+```
+
+To remove all local data and recreate 50 clearly labeled demo accounts:
+
+```bash
+python3 reset_demo_database.py
+```
+
+> The demo accounts are only local sample data. CodeVault does not publicly display other users because all vaults are private.
+
+## Tests
+
+Run automated tests with:
 
 ```bash
 python3 -m unittest discover -s tests -v
 ```
 
-Covers spaced-repetition intervals, review completion, and user ownership protection.
+The tests verify spaced-repetition intervals, review completion, and user ownership protection.
 
-## 🤖 AI Assistance
+## Design Philosophy
 
-AI tools were used to help draft portions of this project. I reviewed, adapted, and understand the code.
+CodeVault intentionally uses Flask, SQLite, Bootstrap, vanilla JavaScript, and Chart.js. The project stays understandable and explainable for a CS50 student while avoiding unnecessary frameworks, AI APIs, scraping, social features, and external services.
+
+## AI Assistance Disclosure
+
+AI assistance was used to help draft portions of this project. The author reviewed, adapted, and understands the submitted code. Generated or adapted source files include comments acknowledging that assistance, in line with the CS50 Final Project policy.
 
 ---
 
