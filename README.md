@@ -1,77 +1,47 @@
-# CodeVault
+<div align="center">
 
-CodeVault is a personal coding-problem tracker built as a CS50 Final Project. It helps users keep a private record of solved DSA and coding problems, identify their progress, and actively revisit old solutions using spaced repetition.
+# </> CodeVault
 
-> **AI assistance disclosure:** AI assistance was used to help draft portions of this project. The author reviewed, adapted, and understands the submitted code. Source files containing generated or adapted code are marked with comments, in line with the CS50 Final Project policy.
+### Your solved problems deserve a second brain.
 
-## Highlights
+**A private coding-problem tracker with active-recall reviews, built for deliberate practice.**
 
-- Secure registration, login, and logout with Werkzeug password hashing
-- Private, per-user problem records protected on every route
-- Add, view, update, and delete coding problems
-- Dashboard totals for difficulty, topics, and recent activity
-- Browser-side search and filtering by name, difficulty, and topic
-- Statistics page with a Chart.js difficulty chart and topic totals
-- Review Mode with an SM-2-inspired spaced-repetition schedule for active recall
-- Input validation for required data, dates, difficulties, and HTTP(S) URLs
-- SQLite indexes for fast problem lists and review queues
+[Features](#what-you-can-do) · [Quick Start](#quick-start) · [Review Mode](#review-mode) · [Tests](#tests)
 
-## Tech stack
+</div>
 
-- Python and Flask
-- SQLite
-- HTML, Bootstrap, and custom CSS
-- Vanilla JavaScript
-- Chart.js
+---
 
-## Project structure
+Most coding platforms remember whether you solved a problem. CodeVault remembers what *you* learned from it.
 
-- `app.py` contains the Flask routes, SQLite initialization, validation, review scheduler, and ownership checks.
-- `helpers.py` contains the `login_required` decorator.
-- `templates/` contains the Jinja HTML pages.
-- `static/styles.css` contains the responsive custom styling.
-- `static/script.js` contains filtering and delete confirmation behaviour.
-- `codevault.db` is created automatically the first time the application runs.
-- `seed_demo.py` creates a separate account with sample data for demonstrations.
-- `tests/` contains automated tests for the review schedule and access control.
+Save a problem with your own notes, track progress across topics and difficulties, and let the review queue bring old solutions back before they fade.
 
-## Run locally or in the CS50 Codespace
+> · Built with Python, Flask, SQLite, Bootstrap, JavaScript, and Chart.js.
 
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-flask --app app run
-```
+## What You Can Do
 
-Open the address Flask prints in the terminal. For a Codespace, use its forwarded port preview. To use a non-default session key, set `SECRET_KEY` before starting Flask:
+| Feature | Description |
+| --- | --- |
+| 🔐 **Private Vault** | Register, log in, and keep every problem record private. |
+| ➕ **Problem Journal** | Save title, platform, URL, difficulty, topic, solved date, and notes. |
+| 🔎 **Search & Filter** | Search by name and filter by difficulty or topic. |
+| 📊 **Statistics** | Track solved problems by difficulty and topic. |
+| 🧠 **Review Mode** | Revisit old problems using spaced repetition. |
+| ✏️ **Full Control** | View, edit, or delete your saved problems anytime. |
 
-```bash
-export SECRET_KEY="a-long-random-secret"
-```
+## Review Mode
 
-## Demo data
+Review Mode is CodeVault’s main unique feature.
 
-To populate a separate demo account with twelve sample problems, run:
+Instead of becoming a list of old solved links, CodeVault helps you actively remember your approaches.
 
-```bash
-python3 seed_demo.py
-```
+1. Add a solved problem.
+2. CodeVault schedules its first review for the next day.
+3. Open **Review Mode** and try to recall the solution before opening your notes.
+4. Mark the problem as reviewed.
+5. CodeVault schedules the next review farther in the future.
 
-Then log in with username `demo_user` and password `demo1234`. The script is safe to run more than once; it does not duplicate the sample problems or modify other accounts.
+The review schedule expands through:
 
-## Tests
-
-Run the automated test suite with:
-
-```bash
-python3 -m unittest discover -s tests
-```
-
-The tests check the expanding review intervals, completion of a review, and that users cannot access each other's problems.
-
-## Design notes
-
-SQLite holds two tables: `users` (`id`, `username`, `hash`) and `problems` (`id`, `user_id`, `name`, `platform`, `url`, `difficulty`, `topic`, `date_solved`, `notes`, `created_at`, plus review fields). Review Mode uses `review_count`, `review_interval`, `last_reviewed`, and `next_review`. After a review, it schedules the next session after 1, 3, 7, 14, 30, or 60 days. Every problem query uses both its ID and the signed-in `user_id`, so one user cannot read, edit, or delete another user's records.
-
-The application intentionally uses only Flask, SQLite, Bootstrap, vanilla JavaScript, and Chart.js to keep the project approachable for a CS50 student. The database and virtual environment are intentionally excluded from Git; every fresh copy creates its own database when the application runs.
+```text
+1 → 3 → 7 → 14 → 30 → 60 days
