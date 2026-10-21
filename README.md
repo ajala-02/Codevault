@@ -13,11 +13,13 @@ A private coding-problem tracker that uses **spaced repetition** and **active re
 ![Chart.js](https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white)
 
 </div>
-**CS50x Final Project**
+<div align="center">
 
-**Video Demo:**https://youtu.be/gg0ZCP6hcmU
+<b>CS50x Final Project</b>
+<br>
+<b>Video Demo:</b> <a href="https://youtu.be/gg0ZCP6hcmU">https://youtu.be/gg0ZCP6hcmU</a>
 
----
+</div>
 
 ## 💡 Why CodeVault?
 
