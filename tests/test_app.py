@@ -83,6 +83,5 @@ class CodeVaultTestCase(unittest.TestCase):
         self.assertEqual(self.client.get("/problem/1").status_code, 404)
         self.assertEqual(self.client.post("/review/1").status_code, 404)
 
-
 if __name__ == "__main__":
     unittest.main()
