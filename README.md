@@ -92,6 +92,30 @@ Codevault/
 └── assets/         # README screenshots
 ```
 
+## 📂 Files and What They Do
+
+- **app.py** is the core of the project. It defines every route (register, login, logout, dashboard, add, edit, delete, problem list, details, review, statistics), validates all user input, creates the SQLite tables, and contains the logic that schedules each problem's next review date.
+- **helpers.py** holds the `login_required` decorator, which redirects anonymous visitors to the login page so private routes stay private.
+- **templates/** contains the Jinja pages. They all extend one shared layout, so navigation and styling stay consistent across the app.
+- **static/styles.css** is the custom design layered on top of Bootstrap. **static/script.js** handles live search, filtering, and delete confirmation in the browser.
+- **seed_demo.py** and **reset_demo_database.py** create sample accounts and problems, so the app can be explored without typing in data by hand.
+- **tests/test_app.py** contains automated tests for the review intervals, review completion, and the rule that users cannot review each other's problems.
+- **assets/** holds the screenshots used in this README.
+
+## 🧩 Design Choices
+
+**Why Flask and SQLite?** CodeVault has a small, clear data model: users and the problems they own. SQLite needs no separate server and keeps setup to a few commands, and Flask keeps routing and sessions simple enough that I can explain every line.
+
+**Why a fixed review ladder?** The goal is retention, not storage. The intervals of 1, 3, 7, 14, 30, and 60 days are predictable, easy to test, and easy to explain. I chose them over a more complex adaptive algorithm because a simple schedule is easier to verify and debug.
+
+**Why active recall?** Review Mode hides the notes until the user chooses to reveal them. Trying to remember the solution first is what strengthens memory, so the interface forces that step instead of just showing the answer.
+
+**Why plain JavaScript?** Search and filtering run in the browser with vanilla JavaScript, so results update instantly without extra requests and without adding a frontend framework.
+
+**Why strict ownership checks?** Every vault is private, so every problem query includes the signed-in user's ID. A user who guesses another problem's URL gets nothing back, and a test covers this case.
+
+**Why server-side validation?** The browser can be bypassed, so URLs, dates, required fields, and difficulty values are all checked again on the server before anything reaches the database.
+
 ## 🚀 Run Locally
 
 ```bash
@@ -115,6 +139,10 @@ python3 -m unittest discover -s tests -v
 ```
 
 Covers spaced-repetition intervals, review completion, and user ownership protection.
+
+## 🤖 AI Assistance
+
+AI tools were used to help draft portions of this project. I reviewed, adapted, and understand all of the submitted code.
 
 ## 👨‍💻 Author
 
