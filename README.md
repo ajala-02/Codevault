@@ -13,6 +13,9 @@ A private coding-problem tracker that uses **spaced repetition** and **active re
 ![Chart.js](https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white)
 
 </div>
+**CS50x Final Project**
+
+**Video Demo:**https://youtu.be/gg0ZCP6hcmU
 
 ---
 
